@@ -19,6 +19,9 @@ body {
   );
   padding: 30px;
 }
+.top-section {
+  margin-bottom: 16px;
+}
 h1 {
   font-size: 24;
   font-weight: 900;
@@ -37,9 +40,10 @@ li {
 li:first-letter {
   text-transform: capitalize;
 }
-.top-section {
-  margin-bottom: 16px;
+.description {
+  font-weight: 500;
 }
+
 #temperature {
   line-height: 64px;
   font-size: 40px;
@@ -64,6 +68,5 @@ a {
 
 .source-code {
   opacity: 0.6;
-  font-size: smaller;
   margin-right: 20px;
 }
