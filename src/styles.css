@@ -45,3 +45,7 @@ a {
   );
   padding: 30px;
 }
+.source-code {
+  opacity: 0.6;
+  font-size: small;
+}
