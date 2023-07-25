@@ -7,9 +7,15 @@ let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${api
 function displayTemperature(response) {
   console.log(response);
   // let cityElement = document.querySelector("#city");
-  // let descriptionElement = document.querySelector("#description");
-  // let temperatureElement = document.querySelector("#temperature");
-  // let humidityElement = document.querySelector("#humidity");
-  // lewindElement = document.querySelector("#wind");
+  let descriptionElement = document.querySelector("#description");
+  let temperatureElement = document.querySelector("#temperature");
+  let humidityElement = document.querySelector("#humidity");
+  lewindElement = document.querySelector("#wind");
+
+  // cityElement.innerHTML = response.data.name;
+  temperatureElement.innerHTML = response.data.main.temp;
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
 }
 axios.get(apiUrl).then(displayTemperature);
