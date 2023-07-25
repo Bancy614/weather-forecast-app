@@ -19,7 +19,7 @@ li:first-letter {
 #celcius-link,
 #fahrenheit-link {
   position: relative;
-  top: -25px;
+  top: -20px;
 }
 a {
   text-decoration: none;
@@ -48,4 +48,5 @@ a {
 .source-code {
   opacity: 0.6;
   font-size: small;
+  margin-right: 20px;
 }
