@@ -29,10 +29,18 @@ a {
 }
 .container {
   max-width: 600px;
-  background-color: rgb(62, 62, 158);
+  background: linear-gradient(
+    90deg,
+    rgb(115, 228, 252) 0%,
+    rgb(139, 102, 241) 100%
+  );
   padding: 0px;
   margin-top: 50px;
 }
 .card {
-  background-color: rgb(62, 62, 158);
+  background: linear-gradient(
+    90deg,
+    rgb(115, 228, 252) 0%,
+    rgb(139, 102, 241) 100%
+  );
 }
