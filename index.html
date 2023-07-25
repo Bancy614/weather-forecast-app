@@ -23,7 +23,8 @@
               type="text"
               placeholder="Enter city name"
               id="city-input"
-              class="focus"
+              autofocus="on"
+              autocomplete="off"
             />
             <input
               type="submit"
@@ -46,7 +47,7 @@
                 <img src="" alt="image" id="icon" />
                 <strong id="temperature">12</strong>
                 <span class="units"
-                  ><a href="#" id="celcius-link" class="active">°C|</a></span
+                  ><a href="#" id="celcius-link" class="active">°C |</a></span
                 >
 
                 <a href="#" id="fahrenheit-link">°F</a>
@@ -54,8 +55,8 @@
 
               <div class="col-6">
                 <ul>
-                  <li>Humidity:<span id="humidity"></span></li>
-                  <li>Wind:<span id="wind"></span></li>
+                  <li>Humidity:<span id="humidity">80%</span></li>
+                  <li>Wind:<span id="wind">5Km/h</span></li>
                 </ul>
               </div>
             </div>
