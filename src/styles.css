@@ -19,11 +19,15 @@ li:first-letter {
 #celcius-link,
 #fahrenheit-link {
   position: relative;
-  top: -34px;
+  top: -25px;
 }
 a {
   text-decoration: none;
 }
 #celcius-link {
   color: black;
+}
+.container {
+  max-width: 600px;
+  background-color: rgb(62, 62, 158);
 }
