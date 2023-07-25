@@ -13,12 +13,12 @@ li:first-letter {
 #temperature {
   line-height: 64px;
   font-size: 40px;
-  position: relative;
-  top: -34px;
+
   font-weight: 400;
 }
 #celcius-link,
 #fahrenheit-link {
+  position: relative;
   top: -34px;
 }
 a {
