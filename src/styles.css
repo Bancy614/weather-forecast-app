@@ -21,7 +21,7 @@ body {
 }
 h1 {
   font-size: 24;
-  font-weight: 400;
+  font-weight: 900;
   line-height: 28px;
   margin-bottom: 0;
 }
@@ -59,7 +59,7 @@ a {
 #humidity,
 #wind {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 800;
 }
 
 .source-code {
