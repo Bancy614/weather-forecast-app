@@ -92,3 +92,46 @@ function displayCelciusTemperature(event) {
 }
 let celciusLink = document.querySelector("#celcius-link");
 celciusLink.addEventListener("click", displayCelciusTemperature);
+
+let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=33f2tedfbf4o930695dbbb808ab0c1ae&units=metric`;
+
+function displayForecasttemperature(response) {
+  console.log(response.data);
+  let temperatureDay1Element = document.querySelector("#temp-day1");
+  let temperatureDay2Element = document.querySelector("#temp-day2");
+  let temperatureDay3Element = document.querySelector("#temp-day3");
+  let temperatureDay4Element = document.querySelector("#temp-day4");
+  let temperatureDay5Element = document.querySelector("#temp-day5");
+  let temperatureDay6Element = document.querySelector("#temp-day6");
+
+  let temperatureDay1Max = Math.round(
+    response.data.daily[0].temperature.maximum
+  );
+  temperatureDay1Element.innerHTML = `${temperatureDay1Max}°C`;
+
+  let temperatureDay2Max = Math.round(
+    response.data.daily[1].temperature.maximum
+  );
+  temperatureDay2Element.innerHTML = `${temperatureDay2Max}°C`;
+
+  let temperatureDay3Max = Math.round(
+    response.data.daily[2].temperature.maximum
+  );
+  temperatureDay3Element.innerHTML = `${temperatureDay3Max}°C`;
+
+  let temperatureDay4Max = Math.round(
+    response.data.daily[3].temperature.maximum
+  );
+  temperatureDay4Element.innerHTML = `${temperatureDay4Max}°C`;
+
+  let temperatureDay5Max = Math.round(
+    response.data.daily[4].temperature.maximum
+  );
+  temperatureDay5Element.innerHTML = `${temperatureDay5Max}°C`;
+
+  let temperatureDay6Max = Math.round(
+    response.data.daily[5].temperature.maximum
+  );
+  temperatureDay6Element.innerHTML = `${temperatureDay6Max}°C`;
+}
+axios.get(forecastUrl).then(displayForecasttemperature);

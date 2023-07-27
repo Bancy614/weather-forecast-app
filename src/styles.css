@@ -72,6 +72,9 @@ a {
   font-size: 16px;
   font-weight: 600;
 }
+.max {
+  font-weight: 900;
+}
 
 .source-code {
   opacity: 0.6;
