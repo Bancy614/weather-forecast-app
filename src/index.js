@@ -49,6 +49,7 @@ function displayTemperature(response) {
   dateElement.innerHTML = formatDate(response.data.time * 1000);
   iconElement.setAttribute("src", response.data.condition.icon_url);
   iconElement.setAttribute("alt", response.data.condition.description);
+  celciusTemperature = response.data.temperature.current;
 }
 
 function handleSubmit(event) {
@@ -68,3 +69,26 @@ function search(city) {
   axios.get(apiUrl).then(displayTemperature);
 }
 search("Nairobi");
+
+let celciusTemperature = null;
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = (celciusTemperature * 9) / 5 + 32;
+  let fahrenheitTemperatureElement = document.querySelector("#temperature");
+  fahrenheitTemperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+  celciusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+}
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+function displayCelciusTemperature(event) {
+  event.preventDefault();
+  let celciusTemperatureElement = document.querySelector("#temperature");
+  celciusTemperatureElement.innerHTML = Math.round(celciusTemperature);
+  celciusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+}
+let celciusLink = document.querySelector("#celcius-link");
+celciusLink.addEventListener("click", displayCelciusTemperature);
