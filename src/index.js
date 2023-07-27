@@ -133,5 +133,43 @@ function displayForecasttemperature(response) {
     response.data.daily[5].temperature.maximum
   );
   temperatureDay6Element.innerHTML = `${temperatureDay6Max}°C`;
+
+  // min temperature
+  let minTemperatureDay1Element = document.querySelector("#min-temp-day1");
+  let minTemperatureDay2Element = document.querySelector("#min-temp-day2");
+  let minTemperatureDay3Element = document.querySelector("#min-temp-day3");
+  let minTemperatureDay4Element = document.querySelector("#min-temp-day4");
+  let minTemperatureDay5Element = document.querySelector("#min-temp-day5");
+  let minTemperatureDay6Element = document.querySelector("#min-temp-day6");
+
+  let minTemperatureDay1 = Math.round(
+    response.data.daily[0].temperature.minimum
+  );
+  minTemperatureDay1Element.innerHTML = `${minTemperatureDay1}°C`;
+
+  let minTemperatureDay2 = Math.round(
+    response.data.daily[1].temperature.minimum
+  );
+  minTemperatureDay2Element.innerHTML = `${minTemperatureDay2}°C`;
+
+  let minTemperatureDay3 = Math.round(
+    response.data.daily[2].temperature.minimum
+  );
+  minTemperatureDay3Element.innerHTML = `${minTemperatureDay3}°C`;
+
+  let minTemperatureDay4 = Math.round(
+    response.data.daily[3].temperature.minimum
+  );
+  minTemperatureDay4Element.innerHTML = `${minTemperatureDay4}°C`;
+
+  let minTemperatureDay5 = Math.round(
+    response.data.daily[4].temperature.minimum
+  );
+  minTemperatureDay5Element.innerHTML = `${minTemperatureDay5}°C`;
+
+  let minTemperatureDay6 = Math.round(
+    response.data.daily[5].temperature.minimum
+  );
+  minTemperatureDay6Element.innerHTML = `${minTemperatureDay6}°C`;
 }
 axios.get(forecastUrl).then(displayForecasttemperature);
