@@ -4,32 +4,6 @@ let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=33f2t
 
 // https://api.shecodes.io/weather/v1/current?query=Nairobi&key=33f2tedfbf4o930695dbbb808ab0c1ae&units=metric
 
-function displayTemperature(response) {
-  console.log(response.data);
-  console.log(response.data.temperature.current);
-  console.log(response.data.condition.description);
-  console.log(response.data.temperature.humidity);
-  console.log(response.data.wind.speed);
-  console.log(response.data.time);
-
-  let cityElement = document.querySelector("#city");
-  let temperatureElement = document.querySelector("#temperature");
-  let descriptionElement = document.querySelector("#description");
-  let humidityElement = document.querySelector("#humidity");
-  let windElement = document.querySelector("#wind");
-  let dateElement = document.querySelector("#date");
-
-  cityElement.innerHTML = response.data.city;
-  let temperature = Math.round(response.data.temperature.current);
-  temperatureElement.innerHTML = `${temperature}`;
-  descriptionElement.innerHTML = response.data.condition.description;
-  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
-  let wind = Math.round(response.data.wind.speed);
-  windElement.innerHTML = `${wind}Km/h`;
-  dateElement.innerHTML = formatDate(response.data.time * 1000);
-}
-axios.get(apiUrl).then(displayTemperature);
-
 function formatDate(timestamp) {
   let date = new Date(timestamp);
 
@@ -47,3 +21,33 @@ function formatDate(timestamp) {
   }
   return `${day} ${hours}:${minutes}`;
 }
+
+function displayTemperature(response) {
+  console.log(response.data);
+  console.log(response.data.temperature.current);
+  console.log(response.data.condition.description);
+  console.log(response.data.temperature.humidity);
+  console.log(response.data.wind.speed);
+  console.log(response.data.time);
+  console.log(response.data.condition.icon_url);
+
+  let cityElement = document.querySelector("#city");
+  let temperatureElement = document.querySelector("#temperature");
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
+
+  cityElement.innerHTML = response.data.city;
+  let temperature = Math.round(response.data.temperature.current);
+  temperatureElement.innerHTML = `${temperature}`;
+  descriptionElement.innerHTML = response.data.condition.description;
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+  let wind = Math.round(response.data.wind.speed);
+  windElement.innerHTML = `${wind}Km/h`;
+  dateElement.innerHTML = formatDate(response.data.time * 1000);
+  iconElement.setAttribute("src", response.data.condition.icon_url);
+  iconElement.setAttribute("alt", response.data.condition.description);
+}
+axios.get(apiUrl).then(displayTemperature);

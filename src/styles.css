@@ -44,9 +44,11 @@ li:first-letter {
 }
 
 #temperature {
-  line-height: 64px;
+  line-height: 72px;
   font-size: 40px;
   font-weight: 900;
+  margin-left: -16px;
+  margin-bottom: -24px;
 }
 #celcius-link,
 #fahrenheit-link {
