@@ -171,5 +171,50 @@ function displayForecasttemperature(response) {
     response.data.daily[5].temperature.minimum
   );
   minTemperatureDay6Element.innerHTML = `${minTemperatureDay6}°C`;
+
+  // icon display
+  // response.data.daily[0].condition.icon_url
+  let iconElementDay1 = document.querySelector("#icon-day1");
+  let iconElementDay2 = document.querySelector("#icon-day2");
+  let iconElementDay3 = document.querySelector("#icon-day3");
+  let iconElementDay4 = document.querySelector("#icon-day4");
+  let iconElementDay5 = document.querySelector("#icon-day5");
+  let iconElementDay6 = document.querySelector("#icon-day6");
+
+  iconElementDay1.setAttribute(
+    "src",
+    response.data.daily[0].condition.icon_url
+  );
+  iconElementDay1.setAttribute("alt", response.data.daily[0].condition.icon);
+
+  iconElementDay2.setAttribute(
+    "src",
+    response.data.daily[1].condition.icon_url
+  );
+  iconElementDay2.setAttribute("alt", response.data.daily[1].condition.icon);
+
+  iconElementDay3.setAttribute(
+    "src",
+    response.data.daily[2].condition.icon_url
+  );
+  iconElementDay3.setAttribute("alt", response.data.daily[2].condition.icon);
+
+  iconElementDay4.setAttribute(
+    "src",
+    response.data.daily[3].condition.icon_url
+  );
+  iconElementDay4.setAttribute("alt", response.data.daily[3].condition.icon);
+
+  iconElementDay5.setAttribute(
+    "src",
+    response.data.daily[4].condition.icon_url
+  );
+  iconElementDay5.setAttribute("alt", response.data.daily[4].condition.icon);
+
+  iconElementDay6.setAttribute(
+    "src",
+    response.data.daily[5].condition.icon_url
+  );
+  iconElementDay6.setAttribute("alt", response.data.daily[5].condition.icon);
 }
 axios.get(forecastUrl).then(displayForecasttemperature);
