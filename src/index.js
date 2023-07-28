@@ -22,6 +22,7 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+let celciusTemperature = null;
 function displayTemperature(response) {
   console.log(response.data);
   console.log(response.data.temperature.current);
@@ -56,7 +57,6 @@ function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
-  console.log(cityInputElement.value);
 }
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
@@ -66,11 +66,12 @@ function search(city) {
 
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=33f2tedfbf4o930695dbbb808ab0c1ae&units=metric`;
 
+  let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=33f2tedfbf4o930695dbbb808ab0c1ae&units=metric`;
+
   axios.get(apiUrl).then(displayTemperature);
+  axios.get(forecastUrl).then(displayForecasttemperature);
 }
 search("Nairobi");
-
-let celciusTemperature = null;
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
@@ -95,6 +96,7 @@ celciusLink.addEventListener("click", displayCelciusTemperature);
 
 let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=33f2tedfbf4o930695dbbb808ab0c1ae&units=metric`;
 
+let maxTemperature = null;
 function displayForecasttemperature(response) {
   console.log(response.data);
   let temperatureDay1Element = document.querySelector("#temp-day1");
@@ -108,6 +110,7 @@ function displayForecasttemperature(response) {
     response.data.daily[0].temperature.maximum
   );
   temperatureDay1Element.innerHTML = `${temperatureDay1Max}°C`;
+  maxTemperature = Math.round(response.data.daily[0].temperature.maximum);
 
   let temperatureDay2Max = Math.round(
     response.data.daily[1].temperature.maximum
