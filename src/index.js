@@ -1,8 +1,5 @@
 let apikey = "33f2tedfbf4o930695dbbb808ab0c1ae";
-let city = "Nairobi";
 let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=33f2tedfbf4o930695dbbb808ab0c1ae&units=metric`;
-
-// https://api.shecodes.io/weather/v1/current?query=Nairobi&key=33f2tedfbf4o930695dbbb808ab0c1ae&units=metric
 
 function formatDate(timestamp) {
   let date = new Date(timestamp);
