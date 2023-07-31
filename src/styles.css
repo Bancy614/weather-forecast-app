@@ -73,6 +73,9 @@ a {
   font-size: 16px;
   font-weight: 600;
 }
+.weather-forecast-temperature-min {
+  opacity: 0.6;
+}
 
 .source-code {
   opacity: 0.6;
