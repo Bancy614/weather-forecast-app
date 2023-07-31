@@ -24,14 +24,6 @@ function formatDate(timestamp) {
 
 let celciusTemperature = null;
 function displayTemperature(response) {
-  console.log(response.data);
-  console.log(response.data.temperature.current);
-  console.log(response.data.condition.description);
-  console.log(response.data.temperature.humidity);
-  console.log(response.data.wind.speed);
-  console.log(response.data.time);
-  console.log(response.data.condition.icon_url);
-
   let cityElement = document.querySelector("#city");
   let temperatureElement = document.querySelector("#temperature");
   let descriptionElement = document.querySelector("#description");
@@ -51,6 +43,13 @@ function displayTemperature(response) {
   iconElement.setAttribute("src", response.data.condition.icon_url);
   iconElement.setAttribute("alt", response.data.condition.description);
   celciusTemperature = response.data.temperature.current;
+  getForecast(response.data.coordinates);
+}
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "33f2tedfbf4o930695dbbb808ab0c1ae";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function handleSubmit(event) {
@@ -69,7 +68,7 @@ function search(city) {
   let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=33f2tedfbf4o930695dbbb808ab0c1ae&units=metric`;
 
   axios.get(apiUrl).then(displayTemperature);
-  axios.get(forecastUrl).then(displayForecasttemperature);
+  axios.get(forecastUrl).then(displayForecast);
 }
 search("Nairobi");
 
@@ -94,130 +93,44 @@ function displayCelciusTemperature(event) {
 let celciusLink = document.querySelector("#celcius-link");
 celciusLink.addEventListener("click", displayCelciusTemperature);
 
-let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=33f2tedfbf4o930695dbbb808ab0c1ae&units=metric`;
-
-let maxTemperature = null;
-function displayForecasttemperature(response) {
-  console.log(response.data);
-  let temperatureDay1Element = document.querySelector("#temp-day1");
-  let temperatureDay2Element = document.querySelector("#temp-day2");
-  let temperatureDay3Element = document.querySelector("#temp-day3");
-  let temperatureDay4Element = document.querySelector("#temp-day4");
-  let temperatureDay5Element = document.querySelector("#temp-day5");
-  let temperatureDay6Element = document.querySelector("#temp-day6");
-
-  let temperatureDay1Max = Math.round(
-    response.data.daily[0].temperature.maximum
-  );
-  temperatureDay1Element.innerHTML = `${temperatureDay1Max}°C`;
-  maxTemperature = Math.round(response.data.daily[0].temperature.maximum);
-
-  let temperatureDay2Max = Math.round(
-    response.data.daily[1].temperature.maximum
-  );
-  temperatureDay2Element.innerHTML = `${temperatureDay2Max}°C`;
-
-  let temperatureDay3Max = Math.round(
-    response.data.daily[2].temperature.maximum
-  );
-  temperatureDay3Element.innerHTML = `${temperatureDay3Max}°C`;
-
-  let temperatureDay4Max = Math.round(
-    response.data.daily[3].temperature.maximum
-  );
-  temperatureDay4Element.innerHTML = `${temperatureDay4Max}°C`;
-
-  let temperatureDay5Max = Math.round(
-    response.data.daily[4].temperature.maximum
-  );
-  temperatureDay5Element.innerHTML = `${temperatureDay5Max}°C`;
-
-  let temperatureDay6Max = Math.round(
-    response.data.daily[5].temperature.maximum
-  );
-  temperatureDay6Element.innerHTML = `${temperatureDay6Max}°C`;
-
-  // min temperature
-  let minTemperatureDay1Element = document.querySelector("#min-temp-day1");
-  let minTemperatureDay2Element = document.querySelector("#min-temp-day2");
-  let minTemperatureDay3Element = document.querySelector("#min-temp-day3");
-  let minTemperatureDay4Element = document.querySelector("#min-temp-day4");
-  let minTemperatureDay5Element = document.querySelector("#min-temp-day5");
-  let minTemperatureDay6Element = document.querySelector("#min-temp-day6");
-
-  let minTemperatureDay1 = Math.round(
-    response.data.daily[0].temperature.minimum
-  );
-  minTemperatureDay1Element.innerHTML = `${minTemperatureDay1}°C`;
-
-  let minTemperatureDay2 = Math.round(
-    response.data.daily[1].temperature.minimum
-  );
-  minTemperatureDay2Element.innerHTML = `${minTemperatureDay2}°C`;
-
-  let minTemperatureDay3 = Math.round(
-    response.data.daily[2].temperature.minimum
-  );
-  minTemperatureDay3Element.innerHTML = `${minTemperatureDay3}°C`;
-
-  let minTemperatureDay4 = Math.round(
-    response.data.daily[3].temperature.minimum
-  );
-  minTemperatureDay4Element.innerHTML = `${minTemperatureDay4}°C`;
-
-  let minTemperatureDay5 = Math.round(
-    response.data.daily[4].temperature.minimum
-  );
-  minTemperatureDay5Element.innerHTML = `${minTemperatureDay5}°C`;
-
-  let minTemperatureDay6 = Math.round(
-    response.data.daily[5].temperature.minimum
-  );
-  minTemperatureDay6Element.innerHTML = `${minTemperatureDay6}°C`;
-
-  // icon display
-  // response.data.daily[0].condition.icon_url
-  let iconElementDay1 = document.querySelector("#icon-day1");
-  let iconElementDay2 = document.querySelector("#icon-day2");
-  let iconElementDay3 = document.querySelector("#icon-day3");
-  let iconElementDay4 = document.querySelector("#icon-day4");
-  let iconElementDay5 = document.querySelector("#icon-day5");
-  let iconElementDay6 = document.querySelector("#icon-day6");
-
-  iconElementDay1.setAttribute(
-    "src",
-    response.data.daily[0].condition.icon_url
-  );
-  iconElementDay1.setAttribute("alt", response.data.daily[0].condition.icon);
-
-  iconElementDay2.setAttribute(
-    "src",
-    response.data.daily[1].condition.icon_url
-  );
-  iconElementDay2.setAttribute("alt", response.data.daily[1].condition.icon);
-
-  iconElementDay3.setAttribute(
-    "src",
-    response.data.daily[2].condition.icon_url
-  );
-  iconElementDay3.setAttribute("alt", response.data.daily[2].condition.icon);
-
-  iconElementDay4.setAttribute(
-    "src",
-    response.data.daily[3].condition.icon_url
-  );
-  iconElementDay4.setAttribute("alt", response.data.daily[3].condition.icon);
-
-  iconElementDay5.setAttribute(
-    "src",
-    response.data.daily[4].condition.icon_url
-  );
-  iconElementDay5.setAttribute("alt", response.data.daily[4].condition.icon);
-
-  iconElementDay6.setAttribute(
-    "src",
-    response.data.daily[5].condition.icon_url
-  );
-  iconElementDay6.setAttribute("alt", response.data.daily[5].condition.icon);
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+  return days[day];
 }
-axios.get(forecastUrl).then(displayForecasttemperature);
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+        <div class="col-2">
+        <div class="weather-forecast-date">${formatDay(forecastDay.time)}</div>
+        <img
+          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+            forecastDay.condition.icon
+          }.png" alt="forecastDay.condition.description" width="54"/>
+        
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> ${Math.round(
+            forecastDay.temperature.maximum
+          )}° </span>
+          <span class="weather-forecast-temperature-min"> ${Math.round(
+            forecastDay.temperature.minimum
+          )}° </span>
+        </div>
+      </div>
+     
+      `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
